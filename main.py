@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, flash
 
 
 app = Flask(__name__)
@@ -19,6 +19,7 @@ def valor():
     if (dizima == "2025"):
         return render_template("calcula2000.html")
     else:
+        flash("Errou a senha")
         return redirect('/')
 
 
