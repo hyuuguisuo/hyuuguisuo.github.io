@@ -7,7 +7,7 @@ app.config['SECRET_KEY'] = '1234567890'
 @app.route('/')
 
 def home():
-    return render_template('index.html')
+    return render_template('calcula2000.html')
 
 @app.route('/valor', methods=["POST"])
 
