@@ -265,7 +265,7 @@ def arredondar_lista(matriz):
 
 def acaoBotao(event):
     input_mensagem = document.querySelector("#mensagem")
-    mensagem = input_mensagem
+    mensagem = input_mensagem.value
     output_div = document.querySelector("#saida")
 
     if (len(mensagem) == 1):
@@ -293,7 +293,7 @@ def acaoBotao(event):
 
 def acaoBotao2(event):
     input_mensagem = document.querySelector("#mensagem")
-    mensagem = input_mensagem
+    mensagem = input_mensagem.value
     output_div = document.querySelector("#saida_desconverter")
     
     if (len(mensagem) == 1):
