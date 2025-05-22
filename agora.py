@@ -263,7 +263,7 @@ def arredondar_lista(matriz):
     return nova_matriz
 
 
-def acaoBotao():
+def acaoBotao(event):
     input_mensagem = document.querySelector("#mensagem")
     mensagem = input_mensagem
     output_div = document.querySelector("#saida")
@@ -291,7 +291,7 @@ def acaoBotao():
     output_div.innerText = msg
 
 
-def acaoBotao2():
+def acaoBotao2(event):
     input_mensagem = document.querySelector("#mensagem")
     mensagem = input_mensagem
     output_div = document.querySelector("#saida_desconverter")
