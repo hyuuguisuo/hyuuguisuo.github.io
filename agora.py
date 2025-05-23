@@ -55,7 +55,7 @@ def converterMensagem(grupomsg, desconverter):
         "E": 11, "F": 13, "G": 15, "H": 17, "I": 19,
         "J": 21, "K": 23, "L": 25, "M": 27, "N": 29,
         "O": 31, "P": 33, "Q": 35, "R": 37, "S": 39,
-        "T": 41, "U": 43, "V": 45, "W": 47, "X": 39,
+        "T": 41, "U": 43, "V": 45, "W": 47, "X": 49,
         "Y": 51, "Z": 53
     }
     malignoDicionario = {
@@ -196,7 +196,7 @@ def inverteChaves(chaveiro):
     chaveiro[0] = (linalg.inv(chaveiro[0])).tolist()
     chaveiro[1] = (linalg.inv(chaveiro[1])).tolist()
     chaveiro[2] = (linalg.inv(chaveiro[2])).tolist()
-
+    
     chaveiro_inverso = chaveiro
 
     for c in chaveiro_inverso:
@@ -321,6 +321,12 @@ def acaoBotao2(event):
     for c in grupoMsgConvertida:
         for a in c:
             msg += str(a)
+
+
+    print("grupo inicial:", grupoMsg) # separa
+    print("grupo de chaves invertidas:", chaveiroInvertido) # inverte
+    print("mensagem (des)codificada:", finale) # multiplica e retorna ao original
+    print("conversão para letras:", grupoMsgConvertida) # vira letras novamente
 
     print("Mensagem (des)convertida!")
     print(f"> {msg}")
