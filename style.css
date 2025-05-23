@@ -6,8 +6,19 @@ body {
   color: #222;
 }
 
+.container :first-child{
+  grid-column: 1/13;
+  grid-row: 1/4;
+}
+
 .container {
+  display: grid;
   max-width: 500px;
+  
+  border: #222;
+  border-width: 1px;
+  border-style:solid;
+
   margin: 100px auto;
   padding: 2rem;
   background-color: #fafafa;
@@ -22,16 +33,22 @@ body {
   color: #1A8754;
   margin-bottom: 1rem;
 }
-
 input {
+  box-sizing: border-box;
   width: 95%;
-  padding: 12px;
+  padding: 10px;
   font-size: 1rem;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 1rem;
   transition: border-color 0.3s;
   text-align: center;
+}
+
+.mensagem{
+  font-size: 15px;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 input:focus {
@@ -45,6 +62,7 @@ button {
   border: none;
   padding: 12px;
   width: 100%;
+  height: fit-content;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
