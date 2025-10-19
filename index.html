@@ -1,34 +1,257 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CODIFIQUE AQUI GRÁTIS</title>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2025.3.1/core.css" />
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://pyscript.net/releases/2025.3.1/core.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Início</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styler.css">
 </head>
-
 <body>
-    <main class="container">
-        <h1 class="title">Codificador de Mensagem</h1>
-        
-        <div id="textarea"></div>
-        
-        <input type="text" id="mensagem" nome="mensagem" placeholder="Digite sua mensagem..." />
-        <button py-click="acaoBotao">Codificar</button>
-        <br><br>
-        <button py-click="acaoBotao2">Descodificar</button>
-        
-        
-        <script type="py" src="./agora.py" config="./pyscript.json"></script> 
+  <header class="header" role="banner">
+    <div class="topbar">
+      <!-- barra de pesquisa -->
+      <form class="search" role="search">
+        <span>🔍︎</span>
+        <input type="search" name="q" placeholder="Buscar hemocentros, doações..." />
+      </form>
+      
+      <!-- Marca dos sanguinarios anonimos -->
+      <div class="brand">
+        <div class="row">
+          <div class="icon"></div>
+          <b>Sanguinários</b>
+        </div>
+        <small>Anônimos</small>
+      </div>
+
+      <nav class="menu">
+        <button type="button" id="btn-entrar">Entrar</button>
+        <button type="button" class="primary" id="btn-criar">Criar conta</button>
+        <button type="button" class="primary" id="btn-doar">Realizar doacao</button>
+        <button id="btnRelatorio" class="btn primary">Gerar Relatório</button>
+        <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+        <script src="https://unpkg.com/jspdf-autotable@3.8.3/dist/jspdf.plugin.autotable.min.js"></script>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="panel-left">
+
+        <div>
+          <h3>Sobre a Doação de Sangue</h3>
+          <br><p>A doação de sangue é um ato de solidariedade e cidadania, com importância vital para a saúde pública.</p>
+        </div>
+
+        <div class="stock">
+          <h4>Posição do estoque</h4>
+          <div class="chips" id="chips-estoque"></div>
+        </div>
+
+      </div>
+      
+      <div class="hero-img" role="img"></div>
+    </section>
+
+    <!-- Seção: Agende em 1 minuto -->
+    <section class="section cta">
+    <div class="container row">
+        <div class="cta-text">
+        <h3>Agende sua doação em 1 minuto (!)</h3>
+        <p>Informe sua cidade e preferências para encontrar o melhor horário disponível.</p>
+        <form class="cta-form">
+            <label class="sr-only" for="cidade">Cidade</label>
+            <input id="cidade" name="cidade" type="text" placeholder="Digite sua cidade" />
+            <label class="sr-only" for="quando">Quando</label>
+            <select id="quando" name="quando">
+            <option value="">Próximos 7 dias</option>
+            <option>Este fim de semana</option>
+            <option>Manhã</option>
+            <option>Tarde</option>
+            </select>
+            <button class="btn primary" onclick="alert('botão meramente ilustrativo ok')">Buscar horários</button>
+        </form>
+        </div>
+        <ul class="benefits">
+        <li>Leva menos de 5 minutos para reservar</li>
+        <li>Sem filas: chegue com horário marcado</li>
+        <li>Confirmações por e‑mail e WhatsApp!</li>
+        <li>Porém, não possuimos e-mail e WhatsApp.</li>
+        </ul>
+    </div>
+    </section>
+
+    <!-- Seção: Locais próximos -->
+    <section class="section places">
+    <div class="container">
+        <h3>Locais próximos</h3>
+        <div class="cards" id="cards-locais">
+        <!-- preenchido via JS -->
+        </div>
+        <div class="more">
+        <a class="link">Ver todos os locais</a>
+        </div>
+    </div>
+    </section>
+
+    <!-- quem pode doar -->
+    <section class="section eligibility">
+    <div class="container grid-2">
+        <div>
+        <h3>Quem pode doar? Todos que...</h3>
+        <ul class="checklist">
+            <li>Estão em boas condições de saúde</li>
+            <li>Tem entre 16 e 69 anos</li>
+            <li>Pesam no mínimo 50 kg</li>
+            <li>Estão alimentados e bem hidratados</li>
+            <li>Levam documento com foto</li>
+        </ul>
+        </div>
+        <div class="card info">
+        <h4>Intervalos entre doações</h4>
+        <br><p><b>Masculino:</b><br>a cada 2 meses (até 4 vezes/ano). <br><br><b>Feminino:</b><br>a cada 3 meses (até 3 vezes/ano).</p>
         <br>
-   </main>
-   <main class="container">
-        <br>    
-        <div id="saida"></div>
-        <br><br>
-        <div id="saida_desconverter"></div>
-   </main>
+        <a class="btn ghost" href="https://www.gov.br/saude/pt-br/composicao/saes/sangue">Ver requisitos completos</a>
+        </div>
+    </div>
+    </section>
+
+    <!-- rodapé -->
+    <footer class="footer" role="contentinfo">
+    <div class="container foot">
+        <div class="brand-mini">
+        <span class="dot"></span>
+        <strong>Sanguinários</strong>
+        <small>Anônimos</small>
+        <small>3º info</small>
+        </div>
+        <nav class="foot-nav" aria-label="Rodapé">
+        <a>Sobre</a>
+        <a>Privacidade</a>
+        <a href="https://ifpr.edu.br/paranavai/">Contato</a>
+        </nav>
+    </div>
+    </footer>
+
+    <script>
+    const locais = [
+        {nome:'Hemocentro Regional', distancia:'1.2 km', horario:'Seg–Sex 08:00–17:00'},
+        {nome:'Hospital Municipal', distancia:'3.5 km', horario:'Seg–Sáb 07:30–16:00'},
+        {nome:'Unidade Móvel — Praça Central', distancia:'Hoje', horario:'10:00–15:00'},
+        {nome:'Unidade Móvel — Praça Central', distancia:'Hoje', horario:'10:00–15:00'},
+        {nome:'Unidade Móvel — Praça Central', distancia:'Hoje', horario:'10:00–15:00'},
+    ];
+    const wrapLocais = document.getElementById('cards-locais');
+    locais.forEach(({nome, distancia, horario})=>{
+        const el = document.createElement('article');
+        el.className = 'place card';
+        el.innerHTML = `
+        <div class="place-head">
+            <div class="pin">📍</div>
+            <h4>${nome}</h4>
+        </div>
+        <p class="meta">${distancia}</p>
+        <p class="meta">${horario}</p>
+        <div class="place-actions">
+            <a class="btn small">Agendar</a>
+            <a class="btn ghost small">Detalhes</a>
+        </div>
+        `;
+        wrapLocais.appendChild(el);
+    });
+    </script>
+
+  </main>
+
+  <script>
+     // Helper para DD/MM/AAAA
+  function hojeBR(){
+    const d = new Date();
+    const dd = String(d.getDate()).padStart(2,'0');
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const yy = d.getFullYear();
+    return `${dd}/${mm}/${yy}`;
+  } // uso de Data nativa do JS para data corrente [web:48]
+
+  // Informe o nome do usuário logado aqui (ex.: pegue da sessão)
+  const NOME_GERADOR = 'XXXXXXXXXXXXXXXXXXXX';
+
+  const linhas = [
+    {data:hojeBR(), 'O-':99999,'O+':99999,'A-':99999,'A+':99999,'B-':99999,'B+':99999,'AB-':99999,'AB+':99999, total:'9999999999'},
+    {data:hojeBR(), 'O-':99999,'O+':99999,'A-':99999,'A+':99999,'B-':99999,'B+':99999,'AB-':99999,'AB+':99999, total:'9999999999'},
+  ]; // exemplo; substitua pelos seus dados agregados [web:48]
+
+  document.getElementById('btnRelatorio').addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation:'landscape', unit:'pt', format:'a4' });
+
+    // Cabeçalho
+    doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(20,20,20);
+    doc.text('Sanguinários', 60, 50);
+    doc.setFont('helvetica','normal'); doc.setFontSize(12); doc.setTextColor(90,90,90);
+    doc.text('Anônimos', 60, 70); // título e subtítulo no topo [web:48]
+
+    // Data atual
+    doc.setFontSize(12); doc.setTextColor(20,20,20);
+    doc.text(`Data: ${hojeBR()}`, 60, 110); // data dinâmica no formato brasileiro [web:48]
+
+    // Bloco "Relatório" simplificado: apenas "Relatório gerado por:"
+    const startX = doc.internal.pageSize.getWidth() - 420;
+    const baseY = 50;
+    doc.setFont('helvetica','bold'); doc.text('Relatório', startX, baseY); // título do bloco [web:48]
+    doc.setFont('helvetica','normal');
+    doc.text(`Relatório gerado por: ${NOME_GERADOR}`, startX, baseY + 26); // apenas a linha solicitada [web:48]
+
+    // Introdução com intervalo usando a data atual nos dois pontos (ajuste se tiver filtro real)
+    const intro = `Este relatório relata as doações fornecidas entre o dia ${hojeBR()} até o dia ${hojeBR()}`;
+    doc.setTextColor(40,40,40); doc.text(intro, 60, 140, { maxWidth: 560 }); // intro do relatório [web:48]
+
+    // Tabela
+    const head = [['Data','O-','O+','A-','A+','B-','B+','AB-','AB+','Total']];
+    const body = linhas.map(r=>[r.data,r['O-'],r['O+'],r['A-'],r['A+'],r['B-'],r['B+'],r['AB-'],r['AB+'],r.total]); // mapeamento tabular [web:48]
+
+    doc.autoTable({
+      head, body,
+      startY: 170,
+      theme: 'grid',
+      styles: { font:'helvetica', fontSize:10, cellPadding:6, lineColor:[180,180,180], lineWidth:0.8 },
+      headStyles: { fillColor:[230,230,230], textColor:[10,10,10], fontStyle:'bold' },
+      columnStyles: { 0:{ cellWidth:90 }, 9:{ cellWidth:110 } },
+      margin: { left:60, right:60 }
+    }); // renderização da grade com repetição de cabeçalho por página [web:48]
+
+    // Rodapé com paginação
+    const pageCount = doc.getNumberOfPages();
+    for(let i=1;i<=pageCount;i++){
+      doc.setPage(i); doc.setFontSize(10); doc.setTextColor(120,120,120);
+      doc.text(`Página ${i} de ${pageCount}`, doc.internal.pageSize.getWidth()-100, doc.internal.pageSize.getHeight()-20);
+    } // paginação padrão multi‑página [web:48]
+
+    // Abrir em nova aba
+    const url = doc.output('bloburl');
+    window.open(url, '_blank'); // exibe PDF imediatamente no navegador [web:48]
+  });
+    document.getElementById('btn-entrar').onclick = () => location.href = "./entrar.html";
+    document.getElementById('btn-criar').onclick  = () => location.href = "./criar-conta.html";
+    document.getElementById('btn-doar').onclick  = () => location.href = "./doacao.html";
+
+    const estoque = [
+      {tipo:"O+", perc:97}, {tipo:"O-", perc:12},
+      {tipo:"A+", perc:97}, {tipo:"A-", perc:12},
+      {tipo:"B+", perc:97}, {tipo:"B-", perc:12},
+      {tipo:"AB+", perc:97}, {tipo:"AB-", perc:13},
+    ];
+    const wrap = document.getElementById('chips-estoque');
+    estoque.forEach(({tipo, perc})=>{
+      const el = document.createElement('div');
+      el.className = 'chip';
+      el.innerHTML = `<span class="tp">${tipo}</span> <span class="val">${perc}%</span>`;
+      wrap.appendChild(el);
+    });
+  </script>
 </body>
 </html>

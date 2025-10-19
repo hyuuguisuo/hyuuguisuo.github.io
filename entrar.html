@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrar — Sanguinários</title>
+  <link rel="stylesheet" href="./css/styler.css">
+</head>
+<body class="auth-body">
+  <header class="header" role="banner">
+    <div class="topbar">
+      <div class="brand">
+        <div class="row"><div class="icon"></div><b>Sanguinários</b></div>
+        <small>Anônimos</small>
+      </div>
+      <nav class="menu">
+        <a class="btn" href="./criar-conta.html">Criar conta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth">
+    <section class="auth-card">
+      <h2>Entrar</h2>
+      <form id="form-login" novalidate autocomplete="on" aria-describedby="login-help">
+        <p id="login-help" class="muted">Acesse com seu e‑mail e senha cadastrados.</p>
+
+        <div class="field">
+          <label for="login-email">E-mail</label>
+          <input id="login-email" name="email" type="email" required autocomplete="email" />
+          <small class="error"></small>
+        </div>
+
+        <div class="field">
+          <label for="current-password">Senha</label>
+          <div class="pwd">
+            <input id="current-password" name="password" type="password" required autocomplete="current-password" />
+            <button type="button" class="show" aria-controls="current-password" aria-label="Mostrar senha">👁️</button>
+          </div>
+          <small class="error"></small>
+        </div>
+
+        <label class="remember">
+          <input type="checkbox" id="lembrar" /> Manter conectado
+        </label>
+
+        <div class="actions">
+          <a class="btn" href="/">Retornar</a>
+          <button class="btn primary" type="submit">Entrar</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="auth-aside">
+      <h3>Dica</h3>
+      <p>Use um gerenciador de senhas e ative autenticação em dois fatores quando disponível.</p>
+    </aside>
+  </main>
+
+  <script src="/js/auth.js" defer></script>
+</body>
+</html>

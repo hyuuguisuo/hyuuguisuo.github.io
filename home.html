@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sanguinários — Agendar Doação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --red-600:#C8192E;   /* vermelho principal */
+      --red-700:#A50E22;
+      --red-100:#FCEAEC;
+      --bg:#fff;
+      --text:#222;
+      --muted:#8A8A8A;
+      --radius:14px;
+      --shadow:0 8px 24px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#fff 0%, #fff 30%, #FFF4F5 100%);
+    }
+
+    /* Layout principal: barra lateral + conteúdo */
+    .app{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      min-height:100dvh;
+    }
+
+    /* Barra lateral esquerda */
+    .sidebar{
+      background:linear-gradient(180deg, var(--red-700) 0%, var(--red-600) 80%);
+      color:#fff;
+      padding:24px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .sidebar .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:28px;
+    }
+    .logo-badge{
+      width:56px;height:56px;border-radius:50%;
+      background:#fff;
+      display:grid;place-items:center;
+      color:var(--red-600);font-weight:700;
+    }
+    .brand{
+      line-height:1.1;
+    }
+    .brand .title{font-weight:700}
+    .brand .subtitle{opacity:.9;font-size:.9rem}
+
+    .user-card{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:12px;
+      padding:14px;
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .user-row{
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.28);
+      color:#fff;border-radius:8px;
+      padding:8px 10px;font-size:.92rem;
+    }
+    .user-row span{opacity:.8;margin-right:6px}
+
+    /* Conteúdo da página */
+    .content{
+      padding:28px clamp(16px,4vw,48px);
+      display:flex;flex-direction:column;gap:24px;
+    }
+    .topbar{
+      display:flex;justify-content:flex-end;align-items:center;gap:10px;
+    }
+    .topbar .appname{
+      margin-left:auto;
+      font-weight:700;color:#333;
+    }
+    .badge{
+      background:var(--red-600);color:#fff;
+      border-radius:999px;padding:6px 10px;font-size:.85rem;
+    }
+
+    /* Card de formulário */
+    .form-card{
+      width:min(640px, 100%);
+      background:#fff;border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid #F1D7DB;
+      padding:22px;
+    }
+    .form-grid{
+      display:grid;gap:16px;
+    }
+    .field{display:flex;flex-direction:column;gap:6px}
+    .label{
+      font-weight:600;color:#3a3a3a;font-size:.98rem;
+    }
+    .hint{color:var(--muted);font-size:.85rem}
+
+    .control,
+    select, input{
+      appearance:none;
+      width:100%;
+      border:1.5px solid #E9C5CB;
+      background:#fff;
+      color:#222;
+      padding:12px 12px;
+      border-radius:10px;
+      outline:none;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    input:focus, select:focus{
+      border-color:var(--red-600);
+      box-shadow:0 0 0 3px #F8CCD2;
+    }
+
+    .inline{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    .inline .segment{
+      display:flex;flex-direction:column;gap:6px;
+    }
+    .unit{
+      position:absolute;right:10px;top:50%;
+      transform:translateY(-50%);
+      color:var(--muted);font-size:.9rem;
+    }
+    .input-wrap{position:relative}
+
+    /* Ações */
+    .actions{
+      display:flex;gap:18px;margin-top:12px;
+    }
+    .btn{
+      padding:12px 22px;border-radius:999px;
+      border:2px solid var(--red-600);
+      background:#fff;color:var(--red-600);
+      font-weight:700;cursor:pointer;
+      transition:background .2s,color .2s, transform .04s;
+    }
+    .btn:hover{background:#FFF3F5}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{
+      background:var(--red-600);color:#fff;
+      border-color:var(--red-600);
+    }
+    .btn.primary:hover{background:#B91428}
+
+    /* Responsividade */
+    @media (max-width: 900px){
+      .app{grid-template-columns:1fr}
+      .sidebar{display:flex;gap:16px;align-items:center}
+      .user-card{flex:1}
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+
+    <!-- Barra lateral com dados do usuário -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-badge">🩸</div>
+        <div class="brand">
+          <div class="title">Sanguinários</div>
+          <div class="subtitle">Anônimos</div>
+        </div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-row"><span>Nome do Usuário</span> ••••••••••</div>
+        <div class="user-row"><span>CPF</span> ••••••••••••••</div>
+        <div class="user-row"><span>Tipo Sanguíneo</span> —</div>
+      </div>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <section class="content">
+      <div class="topbar">
+        <div class="appname">Sanguinários — Agendar</div>
+        <div class="badge">🩸</div>
+      </div>
+
+      <div class="form-card" role="form" aria-labelledby="legend-agendamento">
+        <h2 id="legend-agendamento" style="margin:0 0 8px 0;font-size:1.15rem;color:#333;">Dados do Agendamento</h2>
+        <div class="form-grid">
+
+          <!-- Quantia -->
+          <div class="field">
+            <label class="label" for="quantia">Quantia</label>
+            <div class="input-wrap">
+              <input id="quantia" name="quantia" type="number" min="0" step="50" placeholder="450" inputmode="numeric" />
+              <span class="unit">ml</span>
+            </div>
+          </div>
+
+          <!-- Data: Dia / Mês / Ano -->
+          <div class="field">
+            <span class="label">Data</span>
+            <div class="inline">
+              <div class="segment">
+                <label class="hint" for="dia">Dia</label>
+                <input id="dia" name="dia" type="number" min="1" max="31" placeholder="DD" />
+              </div>
+              <div class="segment">
+                <label class="hint" for="mes">Mês</label>
+                <input id="mes" name="mes" type="number" min="1" max="12" placeholder="MM" />
+              </div>
+              <div class="segment">
+                <label class="hint" for="ano">Ano</label>
+                <input id="ano" name="ano" type="number" min="2025" max="2100" placeholder="AAAA" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Local -->
+          <div class="field">
+            <label class="label" for="local">Local</label>
+            <select id="local" name="local" aria-label="Selecione o local">
+              <option value="" selected>Selecione um local</option>
+              <option>Hemocentro Regional</option>
+              <option>Hospital Municipal</option>
+              <option>Unidade Móvel</option>
+            </select>
+          </div>
+
+          <!-- Ações -->
+          <div class="actions">
+            <button class="btn" type="button" id="btn-retornar">RETORNAR</button>
+            <button class="btn primary" type="submit" id="btn-agendar">AGENDAR</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Script opcional para mascarar campos e compor a data -->
+  <script>
+    // Converte dia/mes/ano para uma data válida e previne números fora de faixa
+    function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+    const dia = document.getElementById('dia');
+    const mes = document.getElementById('mes');
+    const ano = document.getElementById('ano');
+
+    [dia, mes, ano].forEach(el=>{
+      el.addEventListener('input', ()=>{
+        if(el === dia) el.value = el.value ? clamp(+el.value,1,31) : '';
+        if(el === mes) el.value = el.value ? clamp(+el.value,1,12) : '';
+        if(el === ano) el.value = el.value ? clamp(+el.value,2025,2100) : '';
+      });
+    });
+
+    // Callbacks de exemplo
+    document.getElementById('btn-retornar').addEventListener('click', ()=>{
+      // Troque por navegação real
+      history.back();
+    });
+
+    document.getElementById('btn-agendar').addEventListener('click', ()=>{
+      const payload = {
+        quantia: Number(document.getElementById('quantia').value || 0),
+        data: `${dia.value.padStart(2,'0')}/${mes.value.padStart(2,'0')}/${ano.value}`,
+        local: document.getElementById('local').value
+      };
+      console.log('Agendamento:', payload);
+      alert('Agendamento registrado (demo). Integre ao backend.');
+    });
+  </script>
+</body>
+</html>

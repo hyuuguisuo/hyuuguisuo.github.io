@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Criar conta — Sanguinários</title>
+  <link rel="stylesheet" href="./css/styler.css">
+</head>
+<body class="auth-body">
+  <header class="header" role="banner">
+    <div class="topbar">
+      <div class="brand">
+        <div class="row"><div class="icon"></div><b>Sanguinários</b></div>
+        <small>Anônimos</small>
+      </div>
+      <nav class="menu">
+        <a class="btn" href="./entrar.html">Entrar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth">
+    <section class="auth-card">
+      <h2>Criar conta</h2>
+      <form id="form-signup" novalidate autocomplete="on" aria-describedby="signup-help">
+        <p id="signup-help" class="muted">Preencha seus dados para criar a conta e acessar os serviços de agendamento.</p>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" required autocomplete="name" />
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label>Data de Nascimento</label>
+            <div class="inline">
+              <input id="dia" name="dia" type="number" min="1" max="31" placeholder="Dia" required inputmode="numeric" />
+              <input id="mes" name="mes" type="number" min="1" max="12" placeholder="Mês" required inputmode="numeric" />
+              <input id="ano" name="ano" type="number" min="1920" max="2100" placeholder="Ano" required inputmode="numeric" />
+            </div>
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="cpf">CPF</label>
+            <input id="cpf" name="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" required autocomplete="off" />
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="sexo">Sexo</label>
+            <select id="sexo" name="sexo" required>
+              <option value="">Selecione</option>
+              <option>Feminino</option>
+              <option>Masculino</option>
+              <option>Outro</option>
+              <option>Prefiro não informar</option>
+            </select>
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="tipo">Tipo Sanguíneo</label>
+            <select id="tipo" name="tipo" required>
+              <option value="">Selecione</option>
+              <option>O+</option><option>O-</option>
+              <option>A+</option><option>A-</option>
+              <option>B+</option><option>B-</option>
+              <option>AB+</option><option>AB-</option>
+            </select>
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="new-password">Senha</label>
+            <div class="pwd">
+              <input id="new-password" name="password" type="password" required minlength="8" autocomplete="new-password" aria-describedby="pwd-hint" />
+              <button type="button" class="show" aria-controls="new-password" aria-label="Mostrar senha">👁️</button>
+            </div>
+            <small id="pwd-hint" class="muted">Mínimo 8 caracteres; permita colar e usar gerenciador de senhas.</small>
+            <small class="error"></small>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="/">Retornar</a>
+          <button class="btn primary" type="submit">Cadastrar</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="auth-aside">
+      <h3>Juntos conseguiremos parar o sangramento do Brasil</h3>
+      <p>Seja um doador, seja anônimo.</p>
+      <div class="chips" id="chips-estoque"></div>
+    </aside>
+  </main>
+
+  <script src="/js/auth.js" defer></script>
+</body>
+</html>

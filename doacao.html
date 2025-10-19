@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agendar Doação — Sanguinários</title>
+  <link rel="stylesheet" href="./css/styler.css">
+</head>
+<body class="don-body">
+  <main class="don-app">
+    <!-- Sidebar -->
+    <aside class="don-side">
+        <div class="side-avatar" aria-hidden="true">🕵️</div>
+        <div class="side-row"><span>Nome do Usuário</span></div>
+        <div class="side-row"><span>CPF</span></div>
+        <div class="side-row"><span>Tipo Sanguíneo</span></div>
+
+        <!-- Logo fixo no rodapé da barra lateral -->
+        <div class="side-brand" aria-label="Sanguinários Anônimos">
+            <div class="sb-icon" aria-hidden="true"></div>
+            <div class="sb-text">
+            <strong>Sanguinários</strong>
+            <small>Anônimos</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Conteúdo -->
+    <section class="don-content">
+      <header class="don-top">
+      </header>
+
+      <article class="don-card" role="form" aria-labelledby="legend-don">
+        <h2 id="legend-don">Agendar Doação</h2>
+
+        <form id="form-doacao" class="don-form" novalidate>
+          <!-- Quantia -->
+          <div class="field">
+            <label for="quantia">Quantia</label>
+            <div class="input-wrap">
+              <input id="quantia" name="quantia" type="number" min="50" step="50" placeholder="450" inputmode="numeric" required />
+              <span class="unit">ml</span>
+            </div>
+            <small class="error"></small>
+          </div>
+
+          <!-- Data -->
+          <div class="field">
+            <span class="label">Data</span>
+            <div class="inline">
+              <div class="segment">
+                <label class="hint" for="dia">Dia</label>
+                <input id="dia" name="dia" type="number" min="1" max="31" placeholder="DD" required />
+              </div>
+              <div class="segment">
+                <label class="hint" for="mes">Mês</label>
+                <input id="mes" name="mes" type="number" min="1" max="12" placeholder="MM" required />
+              </div>
+              <div class="segment">
+                <label class="hint" for="ano">Ano</label>
+                <input id="ano" name="ano" type="number" min="2025" max="2100" placeholder="AAAA" required />
+              </div>
+            </div>
+            <small class="error"></small>
+          </div>
+
+          <!-- Local -->
+          <div class="field">
+            <label for="local">Local</label>
+            <select id="local" name="local" required>
+              <option value="" selected>Selecione</option>
+              <option>Hemocentro Regional</option>
+              <option>Hospital Municipal</option>
+              <option>Unidade Móvel</option>
+            </select>
+            <small class="error"></small>
+          </div>
+
+          <!-- Ações -->
+          <div class="actions center">
+            <a class="btn" href="/">RETORNAR</a>
+            <button class="btn primary" type="submit">AGENDAR</button>
+          </div>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <script src="/js/doacao.js" defer></script>
+</body>
+</html>
