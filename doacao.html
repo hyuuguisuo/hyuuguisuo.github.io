@@ -8,24 +8,17 @@
 </head>
 <body class="don-body">
   <main class="don-app">
-    <!-- Sidebar -->
+
     <aside class="don-side">
-        <div class="side-avatar" aria-hidden="true">🕵️</div>
+        <div aria-label="Sanguinários Anônimos">
+          <div class="side-avatar" aria-hidden="true"></div>
+        </div>
+        
         <div class="side-row"><span>Nome do Usuário</span></div>
         <div class="side-row"><span>CPF</span></div>
         <div class="side-row"><span>Tipo Sanguíneo</span></div>
-
-        <!-- Logo fixo no rodapé da barra lateral -->
-        <div class="side-brand" aria-label="Sanguinários Anônimos">
-            <div class="sb-icon" aria-hidden="true"></div>
-            <div class="sb-text">
-            <strong>Sanguinários</strong>
-            <small>Anônimos</small>
-            </div>
-        </div>
     </aside>
 
-    <!-- Conteúdo -->
     <section class="don-content">
       <header class="don-top">
       </header>
@@ -34,7 +27,7 @@
         <h2 id="legend-don">Agendar Doação</h2>
 
         <form id="form-doacao" class="don-form" novalidate>
-          <!-- Quantia -->
+
           <div class="field">
             <label for="quantia">Quantia</label>
             <div class="input-wrap">
@@ -44,7 +37,6 @@
             <small class="error"></small>
           </div>
 
-          <!-- Data -->
           <div class="field">
             <span class="label">Data</span>
             <div class="inline">
@@ -64,7 +56,6 @@
             <small class="error"></small>
           </div>
 
-          <!-- Local -->
           <div class="field">
             <label for="local">Local</label>
             <select id="local" name="local" required>
@@ -76,7 +67,6 @@
             <small class="error"></small>
           </div>
 
-          <!-- Ações -->
           <div class="actions center">
             <a class="btn" href="/">RETORNAR</a>
             <button class="btn primary" type="submit">AGENDAR</button>
