@@ -16,16 +16,16 @@ def verificarFormacao(n1: int, n2: int, n3:int):
     
     if soma > maiorL:
         if n1 == n2 and n2 == n3:
-            return f"Forma um triângulo equilátero, parabéns !"
+            return f"Forma um triângulo equilátero (todos os lados iguais)  !"
 
         elif n1 != n2 and n2 != n3:
-            return f"Forma um triângulo escaleno, parabéns !"
+            return f"Forma um triângulo escaleno (todos os lados diferentes), parabéns !"
         
         else:
-            return f"Forma um triângulo isóceles ! ! parabéns !"
+            return f"Forma um triângulo isóceles (dois lados iguais) ! ! !"
     
     else:
-        return f"É...não forma um triângulo. (-_-)"
+        return f"É 🍅 impossível 🍅🍅 formar 🍅 um 🍅🍅 triângulo 🍅🍅🍅 assim. (-_-) 🍅🍅🍅🍅🍅🍅🍅"
 
     
 verificarFormacao(5, 2, 5)
