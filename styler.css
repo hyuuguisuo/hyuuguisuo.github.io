@@ -1,0 +1,111 @@
+/* style.css */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #222;
+}
+
+.container :first-child{
+  grid-column: 1/13;
+  grid-row: 1/4;
+}
+
+.container {
+  display: grid;
+  max-width: 500px;
+  
+  border: #222;
+  border-width: 1px;
+  border-style:solid;
+
+  margin: 100px auto;
+  padding: 2rem;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+  text-align: center;
+  animation: fadeIn 0.7s ease-in;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: #1A8754;
+  margin-bottom: 1rem;
+}
+input {
+  box-sizing: border-box;
+  width: 95%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s;
+  text-align: center;
+}
+
+.mensagem{
+  font-size: 15px;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+input:focus {
+  border-color: #1A8754;
+  outline: none;
+}
+
+button {
+  background-color: #C62828;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  height: fit-content;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #29d96d;
+}
+
+#output {
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: #1A8754;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* A animação que será disparada */
+.flash-sucesso {
+  animation: border-glow 1.5s ease-out;
+}
+
+#saida {
+  border: 2px solid transparent; /* Começa invisível */
+  border-radius: 8px;
+  transition: all 0.3s;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+@keyframes border-glow {
+  0% {
+    border-color: #1A8754;
+    box-shadow: 0 0 15px rgba(26, 135, 84, 0.5);
+    background-color: rgba(26, 135, 84, 0.1);
+  }
+  100% {
+    border-color: transparent;
+    box-shadow: 0 0 0px rgba(26, 135, 84, 0);
+    background-color: transparent;
+  }
+}

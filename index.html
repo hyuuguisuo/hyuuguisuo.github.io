@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triângulos e suas peculiaridades</title>
+    <link rel="stylesheet" href="./styler.css">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.2.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2026.2.1/core.js"></script>
+
+</head>
+<body>
+    <main class="container">
+        <h1 class="title">Digite 3 medidas e eu te darei um triângulo.</h1>
+        <br><br>
+        <div id="textarea"></div>
+        
+        <input type="text" id="medida_um" nome="medida_um" placeholder="1ª Medida" />
+        <input type="text" id="medida_dois" nome="medida_dois" placeholder="2ª Medida" />
+        <input type="text" id="medida_tres" nome="medida_tres" placeholder="3ª Medida" />
+        <button py-click="acaoBotao" id="acaoBotao">Triângularizar</button>
+        
+        <script type="py" src="./main.py"></script> 
+        <br>
+   </main>
+   <main class="container">
+        <br>    
+        <div id="saida"></div>
+        <br><br>
+        <div id="saida_desconverter"></div>
+   </main>
+</body>
+</html>
