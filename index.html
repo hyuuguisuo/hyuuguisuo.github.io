@@ -4,30 +4,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Triângulos e suas peculiaridades</title>
-    <link rel="stylesheet" href="./styler.css">
-    <link rel="stylesheet" href="https://pyscript.net/releases/2026.2.1/core.css" />
-    <script type="module" src="https://pyscript.net/releases/2026.2.1/core.js"></script>
+    <style>
+        .tab-button {
+            background: #eee;
+            border: 1px solid black;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .tab-button.active {
+            background: #ccc;
+            font-weight: bold;
+        }
+        .principal{
+            display:flex;
+            padding: 25px;
+            padding-left: 215px;
+            padding-right: 240px;
+            align-items: stretch;
+            min-height: 85vh;
+        }
+        .main-section{
+            
+            flex: 3;
+            flex-direction: column;
+            display: flex;
+            padding-left: 50px; padding-right: 50px; padding-top: 25px; padding-bottom: 10px;
+            border: 1px solid black;
+            border-left: 4px solid black;border-bottom: 4px solid black;border-top: 4px solid black;
+        }
+        .main-section > div{
+            flex: 1;
+            display: flex; 
+            flex-direction: column;
+        }
+        .main-section > div:first-child {
+            flex: 0; 
+            min-height: auto; 
+        }
+        .info-section{
+            flex: 1;
+            padding: 10px;
+            border: 1px solid black;
+            border-right: 4px solid black;border-bottom: 4px solid black;border-top: 4px solid black;
+        }
+        .main-section > div:last-child {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center;     /* Centraliza verticalmente */
+        }
+        .myCanvas {
+            width: 100%;
+            height: 100%;
+            display: block; /* Remove espaços vazios na base */
+            object-fit: fill; /* Garante que preencha todo o espaço */
+        }
+        .input-row {
+            display: flex;
+            flex-direction: row !important; /* Garante que fiquem na horizontal */
+            gap: 15px;          /* Cria o espaço (padding) entre cada item automaticamente */
+            padding: 10px 0;    /* Espaço interno em cima e embaixo da linha */
+            flex: 0 !important;
+        }
 
+        .input-row input {
+            padding: 8px;       /* Padding interno dos campos para facilitar a escrita */
+            flex: 1;            /* Opcional: faz todos os inputs terem o mesmo tamanho */
+            max-width: 150px;   /* Limita a largura para não ficarem gigantes */
+        }
+        .title{
+            display: flex;
+            flex-direction: row !important;
+        }
+        .title > div:first-child{
+            flex:3;
+        }
+        .title > div:last-child{
+            flex: 1;
+            display: flex;
+            justify-content: right; /* Centraliza horizontalmente */
+            align-items: center;  
+        }
+        body{
+            font-size:medium;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 25px;
+        }
+        div{
+       
+        }
+        header{
+            border: 2px solid black;
+        }
+    </style>
 </head>
 <body>
-    <main class="container">
-        <h1 class="title">Digite 3 medidas e eu te darei um triângulo.</h1>
-        <br><br>
-        <div id="textarea"></div>
+    <header>
+        aqui
+    </header>
+   <div class="principal">
+    
+    <div id="section-lados" class="main-section">
+        <div class="title">
+            <div>
+                <h1>Triangularizador</h1>
+            </div>
+            <div>
+                <button type="button" onclick="mudarParaAngulos()">ângulos</button> 
+            </div>
+        </div>
+        <div>
+            <p>Insira três medidas para obter um triângulo.</p>
+        </div>
+        <div class="input-row">
+            <input type="number" placeholder="Lado A">
+            <input type="number" placeholder="Lado B">
+            <input type="number" placeholder="Lado C">
+            <button type="button" onclick="mudarParaAngulos()">Calcular</button>
+        </div>
         
-        <input type="text" id="medida_um" nome="medida_um" placeholder="1ª Medida" />
-        <input type="text" id="medida_dois" nome="medida_dois" placeholder="2ª Medida" />
-        <input type="text" id="medida_tres" nome="medida_tres" placeholder="3ª Medida" />
-        <button py-click="acaoBotao" id="acaoBotao">Triângularizar</button>
-        
-        <script type="py" src="./main.py"></script> 
-        <br>
-   </main>
-   <main class="container">
-        <br>    
-        <div id="saida"></div>
-        <br><br>
-        <div id="saida_desconverter"></div>
-   </main>
+        <div id="meu-grafico">
+            <script type="py" target="meu-grafico">
+                import matplotlib.pyplot as plt
+                import numpy as np
+                from pyscript import display
+
+                # Criando dados fictícios
+                x = np.linspace(0, 10, 100)
+                y = np.sin(x)
+
+                # Configurando o gráfico
+                fig, ax = plt.subplots()
+                ax.plot(x, y, color='blue', linewidth=2)
+                ax.set_title("Onda Senoidal")
+                ax.grid(True)
+
+                # Exibe o gráfico diretamente na div selecionada
+                display(fig)
+            </script>
+        </div>
+    </div>
+    
+    <div id="section-angulos" class="main-section" style="display: none;">
+         <div class="title">
+            <div>
+                <h1>Triangularizador</h1>
+            </div>
+            <div>
+                <button type="button" onclick="mudarParaLados()">lados</button> 
+            </div>
+        </div>
+        <div>
+            <p>Insira três ÂNGULOS para obter um triângulo.</p>
+        </div>
+        <div class="input-row">
+            <input type="number" placeholder="1º Ângulo">
+            <input type="number" placeholder="2º Ângulo">
+            <input type="number" placeholder="3º Ângulo">
+            <button onclick="mudarParaLados()">Voltar para Lados</button>
+        </div>
+        <div>
+            <canvas class="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
+        </div>
+    </div>
+    
+    <div class="info-section">
+        Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+    </div>
+   </div>
+   <header>
+    a
+   </header>
+    <script src="script.js"></script>
 </body>
 </html>
