@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triângulos e suas peculiaridades</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.2.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2026.2.1/core.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        * {
+            color: rgb(46, 37, 179);
+        }
+        body {
+            background-image: url('../static/metro_7.png');
+            background-repeat: no-repeat;
+            background-position: center; 
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        #val-a, #val-b, #val-c, #val-area, #val-perim, #val-semi {
+            color: rgb(4, 149, 240);
+            outline: 1px solid #000000;
+            padding: 2px;
+            font-size: large;
+        }
+        h1, h2, h3, #green {
+            /* -webkit-text-fill-color: transparent; 
+            -webkit-text-stroke: 0.7px rgb(81, 18, 255);  */
+            color:rgb(15, 181, 207);
+        }
+        .tab-button {
+            background: #eee;
+            border: 1px solid rgb(46, 37, 179);
+            padding: 10px;
+            cursor: pointer;
+        }
+        .tab-button.active {
+            background: #ccc;
+            font-weight: bold;
+        }
+        .myCanvas {
+            width: 100%;
+            height: 100%;
+            display: block; /* Remove espaços vazios na base */
+            object-fit: fill; /* Garante que preencha todo o espaço */
+        }
+        .principal{
+            display:flex;
+            padding: 25px;
+            padding-left: 215px;
+            padding-right: 240px;
+            align-items: stretch;
+            min-height: 85vh;
+        }
+        .main-section-triangulos{
+            background-color: #fafaff;
+            flex: 3;
+            flex-direction: column;
+            display: flex;
+            padding-left: 50px; padding-right: 50px; padding-top: 25px; padding-bottom: 10px;
+            border: 1px solid rgb(46, 37, 179);
+            border-left: 3.5px solid rgb(46, 37, 179);border-bottom: 3.5px solid rgb(46, 37, 179);border-top: 3.5px solid rgb(46, 37, 179);
+            border-top-left-radius: 0.5em;border-bottom-left-radius: 0.5em;
+        }
+        .header {
+            background-color: #fafaff;
+        }
+        .main-section-triangulos > div{
+            flex: 1;
+            display: flex; 
+            flex-direction: column;
+        }
+        .main-section-triangulos > div:first-child {
+            flex: 0; 
+            min-height: auto; 
+        }
+        .info-section{
+            background-color: #fafaff;
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #2e25b3;
+            border-right: 3.5px solid #2e25b3;border-bottom: 3.5px solid rgb(46, 37, 179);border-top: 3.5px solid rgb(46, 37, 179);
+            border-top-right-radius: 0.5em;border-bottom-right-radius: 0.5em;
+        }
+        .main-section-triangulos > div:last-child {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center;     /* Centraliza verticalmente */
+        }
+        .input-row {
+            display: flex;
+            flex-direction: row !important; /* Garante que fiquem na horizontal */
+            gap: 15px;          /* Cria o espaço (padding) entre cada item automaticamente */
+            padding: 10px 0;    /* Espaço interno em cima e embaixo da linha */
+            flex: 0 !important;
+        }
+        .input-row input {
+            padding: 8px;       /* Padding interno dos campos para facilitar a escrita */
+            flex: 1;            /* Opcional: faz todos os inputs terem o mesmo tamanho */
+            max-width: 150px;   /* Limita a largura para não ficarem gigantes */
+        }
+        .title{
+            display: flex;
+            flex-direction: row !important;
+        }
+        .title > div:first-child{
+            flex:3;
+        }
+        .title > div:last-child{
+            flex: 1;
+            display: flex;
+            justify-content: right; /* Centraliza horizontalmente */
+            align-items: center;  
+        }
+        .div-da-vergonha{
+            display: none !important;
+            color: red;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            border: 2px solid #a0c7d2;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #2e25b3;
+            background-color: #ffffff;
+            /* You can also change the cursor color */
+            caret-color: blue;
+        }
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #5689e8;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        button {
+            border: none; 
+            border-radius: 0.7em;
+            background-color:#376ccf;
+            cursor: pointer;
+            color: white;
+            padding: 15px;
+            font-size: medium;
+        }
+        button:hover {
+            background-color:#37c0cf;
+            animation: color-change 0.25s;
+        }
+        #ifpr {
+            cursor: pointer;
+            animation: move-out-the-way 300s;
+        }
+        @keyframes move-out-the-way {
+            0% {
+                transform: translateX(0); 
+            }
+            7% {
+                transform: translateX(0); 
+            }
+            15% {
+                transform: translateX(500px)
+            }
+            25% {
+                transform: translateX(500px)
+            }
+            35% {
+                transform: translateX(1050px)
+            }
+            42% {
+                transform: translateX(1050px)
+            }
+            50% {
+                transform: translateX(1300px);
+            }
+            75% {
+                transform: translateX(1000px)
+            }
+            90% {
+                transform: translateX(500px)
+            }
+            100% {
+                transform: translateX(0); 
+            }
+        }
+        @keyframes color-change {
+            0% {
+                background-color: #376ccf;
+            }
+            100% {
+                background-color: #37c0cf;
+            }
+        }
+        button:focus {
+            box-shadow: 0 0 0 2px #011da7;
+        }
+    </style>
+    <py-config>
+        packages = ["matplotlib"]
+    </py-config>
+</head>
+<body>
+   <div class="header">
+        <img src="../static/ifpr-logo-preto.png" id="ifpr" width="180" alt="IFPR">
+   </div>
+   <div class="principal">
+    
+    <div id="section-lados" class="main-section-triangulos">
+        <div class="title">
+            <div>
+                <h1>Triangularizador</h1>
+                <hr>
+            </div>
+            <div>
+                <button type="button" onclick="mudarParaAngulos()">ângulos</button> 
+            </div>
+        </div>
+        <div>
+            <p>Insira três medidas <b><span id="green">(metros)</span></b> para obter um triângulo <b><span id="green">(ou não)</span></b>.</p>
+        </div>
+        <div class="input-row">
+            <input type="number" id="lado_a" placeholder="Lado A" step="0.01">
+            <input type="number" id="lado_b" placeholder="Lado B">
+            <input type="number" id="lado_c"placeholder="Lado C">
+            <button type="button" py-click="acaoBotao" id="acaoBotao">triangularizar</button> 
+        </div>
+        <div id="div-da-vergonha" class="div-da-vergonha">a</div>
+        <div id="meu-grafico"></div>
+    </div>
+    <div id="section-angulos" class="main-section" style="display: none;">
+         <div class="title">
+            <div>
+                <h1>Triangularizador</h1>
+            </div>
+            <div>
+                <button type="button" onclick="mudarParaLados()">lados</button> 
+            </div>
+        </div>
+        <div>
+            <p>Insira três ÂNGULOS para obter um triângulo.</p>
+        </div>
+        <div class="input-row">
+            <input type="number" placeholder="1º Ângulo">
+            <input type="number" placeholder="2º Ângulo">
+            <input type="number" placeholder="3º Ângulo">
+            <button type="button" py-click="acaoBotao2" id="acaoBotao2">triangularizar</button> 
+        </div>
+        <div>
+            <canvas class="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
+        </div>
+    </div>
+    
+    <div id="info-section" class="info-section">
+        <h3>Dados do Triângulo</h3><hr><br>
+        <b>A:</b> <span id="val-a">--</span><br><br>
+        <b>B:</b> <span id="val-b">--</span><br><br>
+        <b>C:</b> <span id="val-c">--</span><br><br>
+        <hr><br>
+        <b>Área:</b> <span id="val-area">--</span><br><br>
+        <b>Perímetro:</b> <span id="val-perim">--</span><br><br>
+        <b>Semi-perímetro:</b> <span id="val-semi">--</span><br><br>
+        <!-- <b>Baricentro:</b> <span id="val-bari">--</span><br> -->
+    </div>
+   </div>
+
+   </div>
+
+
+    <script src="script.js"></script>
+    <script type="py" src="./main.py"></script> 
+</body>
+</html>
