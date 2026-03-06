@@ -18,7 +18,7 @@
             background-size: cover;
             background-attachment: fixed;
         }
-        #val-a, #val-b, #val-c, #val-area, #val-perim, #val-semi {
+        #val-a, #val-b, #val-c, #val-area, #val-perim, #val-semi, #val-tipo {
             color: rgb(4, 149, 240);
             outline: 1px solid #000000;
             padding: 2px;
@@ -228,7 +228,7 @@
         <div id="div-da-vergonha" class="div-da-vergonha">a</div>
         <div id="meu-grafico"></div>
     </div>
-    <div id="section-angulos" class="main-section" style="display: none;">
+    <div id="section-angulos" class="main-section-triangulos" style="display: none;">
          <div class="title">
             <div>
                 <h1>Triangularizador</h1>
@@ -238,17 +238,15 @@
             </div>
         </div>
         <div>
-            <p>Insira três ÂNGULOS para obter um triângulo.</p>
+            <p>Insira três <b><span id="green">ângulos</span></b> para obter um triângulo.</p>
         </div>
         <div class="input-row">
-            <input type="number" placeholder="1º Ângulo">
-            <input type="number" placeholder="2º Ângulo">
-            <input type="number" placeholder="3º Ângulo">
+            <input type="number" id="angulo_a1" placeholder="1º Ângulo">
+            <input type="number" id="angulo_a2" placeholder="2º Ângulo">
+            <input type="number" id="angulo_a3" placeholder="3º Ângulo">
             <button type="button" py-click="acaoBotao2" id="acaoBotao2">triangularizar</button> 
         </div>
-        <div>
-            <canvas class="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
-        </div>
+        <div id="meu-grafico2"></div>
     </div>
     
     <div id="info-section" class="info-section">
@@ -256,6 +254,8 @@
         <b>A:</b> <span id="val-a">--</span><br><br>
         <b>B:</b> <span id="val-b">--</span><br><br>
         <b>C:</b> <span id="val-c">--</span><br><br>
+        <hr><br>
+        <b>Tipo:</b> <span id="val-tipo">--</span><br><br>
         <hr><br>
         <b>Área:</b> <span id="val-area">--</span><br><br>
         <b>Perímetro:</b> <span id="val-perim">--</span><br><br>

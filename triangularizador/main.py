@@ -4,6 +4,37 @@ from pyscript import display
 import numpy as np
 import matplotlib.pyplot as plt
 
+def piramidar_comangulos(a1, a2, a3):
+    container = document.getElementById("meu-grafico2")
+    container.innerHTML = ""
+    verificacao=a1+a2+a3
+
+    clean()
+    if( verificacao== 180 ):
+        if(a1!=a2 and  a2!=a3 and a1!=a3 ):
+            document.getElementById("val-tipo").innerText = f"Escaleno"
+            container.innerText = "É possível formar um triângulo ESCALENO a partir desses três ângulos."    
+            
+        elif (a1==a2 and a1!=a3 or a1==a3 and a1!=a2 or a2==a3 ):
+            print("É um triângulo isósceles ")
+            document.getElementById("val-tipo").innerText = f"Isóceles"
+            container.innerText = "É possível formar um triângulo ISÓCELES a partir desses três ângulos."    
+            
+
+        elif(a1==a2==a3):
+            document.getElementById("val-tipo").innerText = f"Equilátero"
+            container.innerText = "É possível formar um triângulo EQUILÁTERO a partir desses três ângulos."    
+            print("Triângulo equilátero")   
+        
+        document.getElementById("val-a").innerText = f"{a1}°"
+        document.getElementById("val-b").innerText = f"{a2}°"
+        document.getElementById("val-c").innerText = f"{a3}°"
+
+    else:
+        container.innerText = "Não é possível formar quaisquer triângulos partir desses três ângulos."    
+        print("Não é um triângulo")
+
+
 def piramidar_comlados(a, b, c):
     container = document.getElementById("meu-grafico")
     container.innerHTML = ""
@@ -146,6 +177,8 @@ def clean():
     document.getElementById("val-b").innerText = f"--"
     document.getElementById("val-c").innerText = f"--"
     
+    document.getElementById("val-tipo").innerText = f"--"
+
     document.getElementById("val-area").innerText = f"--"
     document.getElementById("val-perim").innerText = f"--"
     document.getElementById("val-semi").innerText = f"--"
@@ -166,15 +199,18 @@ def verificarFormacao(n1: float, n2: float, n3:float):
     
     if soma > maiorL:
         if n1 == n2 and n2 == n3:
+            document.getElementById("val-tipo").innerText = f"Equilátero"
             piramidar_comlados(n1, n2, n3)
             # return f"Forma um triângulo equilátero (todos os lados iguais)  !"
 
         elif n1 != n2 and n2 != n3:
             piramidar_comlados(n1, n2, n3)
+            document.getElementById("val-tipo").innerText = f"Escaleno"
             # return f"Forma um triângulo escaleno (todos os lados diferentes), parabéns !"
         
         else:
             piramidar_comlados(n1, n2, n3)
+            document.getElementById("val-tipo").innerText = f"Isóceles"
             # return f"Forma um triângulo isóceles (dois lados iguais) ! ! !"
     
     else:
@@ -186,8 +222,16 @@ def verificarFormacao(n1: float, n2: float, n3:float):
 
 @when("click", "#acaoBotao2")
 def acaoBotao2(event):
-    print("potatoes")
-
+    container = document.getElementById("meu-grafico2")
+    try:
+        a1 = float(document.getElementById("angulo_a1").value)
+        a2 = float(document.getElementById("angulo_a2").value)
+        a3 = float(document.getElementById("angulo_a3").value)
+    except ValueError:
+        container.innerHTML = "Por favor, insira ângulos válidos."
+        return
+    
+    piramidar_comangulos(a1, a2, a3)
 
 @when("click", "#acaoBotao")
 def acaoBotao(event):
